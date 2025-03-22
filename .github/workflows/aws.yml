@@ -83,7 +83,7 @@ jobs:
           echo "Error: One or more required environment variables are empty!"
           exit 1
         fi
-        echo "Final Docker Tag: '$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG'"
+        echo "Final Docker Tag: '$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         # Build and push image
         docker build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" .
         docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

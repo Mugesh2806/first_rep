@@ -68,7 +68,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}  
-        ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}  # ✅ Added missing repository variable
+        ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
         IMAGE_TAG: ${{ github.sha }}
 
       run: |
@@ -84,11 +84,11 @@ jobs:
 
         # Check required variables
         if [ -z "$ECR_REGISTRY" ] || [ -z "$ECR_REPOSITORY" ] || [ -z "$IMAGE_TAG" ]; then
-          echo "❌ Error: One or more required environment variables are empty!"
+          echo "Error: One or more required environment variables are empty!"
           exit 1
         fi
 
-        echo "✅ Final Docker Tag: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "Final Docker Tag: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
         docker build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" .
         docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
